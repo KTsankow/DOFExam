@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dofepapp-deploy
+  name: DOFExam-deploy
 spec:
   replicas: 3
   selector:
     matchLabels: 
-      app: dofepapp
+      app: DOFExam
   minReadySeconds: 10
   strategy:
     type: RollingUpdate
@@ -16,20 +16,20 @@ spec:
   template:
     metadata:
       labels:
-        app: dofepapp
+        app: DOFExam
     spec:
       containers:
       - name: app-cont
-        image: shekeriev/dofepapp:%IMAGE-PLACEHOLDER%
+        image: KTsankow/DOFExam:%IMAGE-PLACEHOLDER%
         ports:
         - containerPort: 80 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: dofepapp-svc
+  name: DOFExam-svc
   labels:
-    app: dofepapp
+    app: DOFExam
 spec:
   type: NodePort
   ports:
@@ -37,4 +37,4 @@ spec:
     nodePort: 31000
     protocol: TCP
   selector:
-    app: dofepapp
+    app: DOFExam
